@@ -1,0 +1,107 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Build CV";
+}
+
+<div class="inputs text-center">
+    <div id="section1">
+    <div class="photo section">
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Choose file:</label>
+            <input class="form-control" type="file" id="formFile">
+        </div>
+    </div>
+    <div class="bacisPersonalInformation section">
+        <p>Basic Personal Information</p>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="Name" placeholder="John">
+            <label for="Name">Name</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="Surname" placeholder="Smith">
+            <label for="Surname">Surname</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="date" class="form-control" id="DateOfBirth" placeholder="01.01.2000">
+            <label for="DateOfBirth">Date of birth</label>
+        </div>
+    </div>
+    <div class="placeOfResidence section">
+        <p>Place of residence</p>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="Country" placeholder="Poland">
+            <label for="Country">Country</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="City" placeholder="Warsaw">
+            <label for="City">City</label>
+        </div>
+    </div>
+    <div class="contactInformation section">
+        <p>Contact information</p>
+        <div class="form-floating mb-3">
+            <input type="tel" class="form-control" id="phoneNumber" placeholder="123-456-789">
+            <label for="phoneNumber">Phone number</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="email" placeholder="John@example.com">
+            <label for="email">Email adress</label>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary" onclick="next('section1')">Next</button>
+    </div>
+    <div id="section2" class="dont-display">
+        <div class="professionalExperience section">
+            <p>Proffesional Experience</p>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="professionalExperience" placeholder="Worked as junior developer in microsoft since 2018">
+                <label for="professionalExperience">Profesional Experience</label>
+            </div>
+        </div>
+        <div class="education">
+            <p>Education</p>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="education" placeholder="Studied in NY, Bachelor of Science in Computer Science">
+                <label for="education">Education</label>
+            </div>
+        </div>
+        <div class="languages">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="languages" placeholder="English, C1">
+                <label for="languages">Languages</label>
+            </div>
+        </div>
+            
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="training" placeholder="Microsoft, April 2021, Demonstrated proficiency in C# programming">
+                <label for="training">Training, Courses, Certifications</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="professionalProfile" placeholder="Some words about you...">
+                <label for="professionalProfile">Professional Profile</label>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="next('section2')">Next</button>
+
+    </div>
+</div>
+
+<div class="cv text-center">
+    <p>CV Generator</p>
+
+</div>
+
+<script>
+    function next(divId) 
+    {
+        const divId1 = document.getElementById(divId);
+        if (divId === "section1") 
+        {
+            divId1.classList.add("dont-display");
+            document.getElementById("section2").classList.remove("dont-display");
+        }
+        
+    }
+</script>
