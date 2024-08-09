@@ -59,31 +59,65 @@
                 <label for="professionalExperience">Profesional Experience</label>
             </div>
         </div>
-        <div class="education">
+        <div class="education section">
             <p>Education</p>
             <div class="form-floating">
                 <input type="text" class="form-control" id="education" placeholder="Studied in NY, Bachelor of Science in Computer Science">
                 <label for="education">Education</label>
             </div>
         </div>
-        <div class="languages">
+        <div class="languages section">
+            <p>Languages</p>
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="languages" placeholder="English, C1">
                 <label for="languages">Languages</label>
             </div>
         </div>
-            
+        <div class="training section">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="training" placeholder="Microsoft, April 2021, Demonstrated proficiency in C# programming">
                 <label for="training">Training, Courses, Certifications</label>
             </div>
+        </div>
+        <div class="professionalProfile section">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="professionalProfile" placeholder="Some words about you...">
                 <label for="professionalProfile">Professional Profile</label>
             </div>
         </div>
-
         <button type="button" class="btn btn-primary" onclick="next('section2')">Next</button>
+    </div>
+    <div id="section3" class="dont-display">
+        <div class="skills section">
+            <p>Skills</p>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="skills" placeholder="C#, ASP.Net, Git and so on!">
+                <label for="skills">Skills</label>
+            </div>
+        </div>
+        <div class="interests section">
+            <p>Interests</p>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="interests" placeholder="Coding, video games">
+                <label for="interests">Interests</label>
+            </div>
+        </div>
+        <div class="links section">
+            <p>Linkss</p>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="links" placeholder="https://www.example.com">
+                <label for="links">Links</label>
+            </div>
+        </div>
+        <div class="cpdp section">
+            <p>Consent for Personal Data Processing</p>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="cpdp" placeholder="Write your Consent for Personal Data Processing here...">
+                <label for="cpdp">Consent for Personal Data Processing</label>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="next('section3')">Next</button>
+    </div>
 
     </div>
 </div>
@@ -97,10 +131,13 @@
     function next(divId) 
     {
         const divId1 = document.getElementById(divId);
-        if (divId === "section1") 
-        {
+        if (divId === "section1") {
             divId1.classList.add("dont-display");
             document.getElementById("section2").classList.remove("dont-display");
+        }
+        if (divId === "section2") {
+            divId1.classList.add("dont-display");
+            document.getElementById("section3").classList.remove("dont-display");
         }
         
     }
