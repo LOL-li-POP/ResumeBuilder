@@ -85,6 +85,7 @@
                 <label for="professionalProfile">Professional Profile</label>
             </div>
         </div>
+        <button type="button" class="btn btn-primary" onclick="prev('section2')">Previous</button>
         <button type="button" class="btn btn-primary" onclick="next('section2')">Next</button>
     </div>
     <div id="section3" class="dont-display">
@@ -103,7 +104,7 @@
             </div>
         </div>
         <div class="links section">
-            <p>Linkss</p>
+            <p>Links</p>
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="links" placeholder="https://www.example.com">
                 <label for="links">Links</label>
@@ -116,7 +117,7 @@
                 <label for="cpdp">Consent for Personal Data Processing</label>
             </div>
         </div>
-        <button type="button" class="btn btn-primary" onclick="next('section3')">Next</button>
+        <button type="button" class="btn btn-primary" onclick="prev('section3')">Previous</button>
     </div>
 
     </div>
@@ -140,5 +141,16 @@
             document.getElementById("section3").classList.remove("dont-display");
         }
         
+    }
+    function prev(divId) {
+        const divId1 = document.getElementById(divId);
+        if (divId === "section2") {
+            divId1.classList.add("dont-display");
+            document.getElementById("section1").classList.remove("dont-display");
+        }
+        if (divId === "section3") {
+            divId1.classList.add("dont-display");
+            document.getElementById("section2").classList.remove("dont-display");
+        }
     }
 </script>
