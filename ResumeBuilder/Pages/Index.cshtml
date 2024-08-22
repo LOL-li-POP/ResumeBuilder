@@ -9,43 +9,43 @@
     <div class="photo section">
         <div class="mb-3">
             <label for="formFile" class="form-label">Choose file:</label>
-            <input class="form-control" type="file" id="formFile">
+                <input class="form-control" type="file" id="formFile" accept="image/*" onchange="updateCVPhoto(this)">
         </div>
     </div>
     <div class="bacisPersonalInformation section">
         <p>Basic Personal Information</p>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="Name" placeholder="John">
+                <input type="text" class="form-control" id="Name" placeholder="John" oninput="updateCV('Name', this.value)">
             <label for="Name">Name</label>
         </div>
         <div class="form-floating">
-            <input type="text" class="form-control" id="Surname" placeholder="Smith">
+                <input type="text" class="form-control" id="Surname" placeholder="Smith" oninput="updateCV('Surname', this.value)">
             <label for="Surname">Surname</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="date" class="form-control" id="DateOfBirth" placeholder="01.01.2000">
+                <input type="date" class="form-control" id="DateOfBirth" placeholder="01.01.2000" oninput="updateCV('DateOfBirth', this.value)">
             <label for="DateOfBirth">Date of birth</label>
         </div>
     </div>
     <div class="placeOfResidence section">
         <p>Place of residence</p>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="Country" placeholder="Poland">
+                <input type="text" class="form-control" id="Country" placeholder="Poland" oninput="updateCV('Country', this.value)">
             <label for="Country">Country</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="City" placeholder="Warsaw">
+                <input type="text" class="form-control" id="City" placeholder="Warsaw" oninput="updateCV('City', this.value)">
             <label for="City">City</label>
         </div>
     </div>
     <div class="contactInformation section">
         <p>Contact information</p>
         <div class="form-floating mb-3">
-            <input type="tel" class="form-control" id="phoneNumber" placeholder="123-456-789">
+                <input type="tel" class="form-control" id="phoneNumber" placeholder="123-456-789" oninput="updateCV('Phone', this.value)">
             <label for="phoneNumber">Phone number</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="email" placeholder="John@example.com">
+                <input type="email" class="form-control" id="email" placeholder="John@example.com" oninput="updateCV('Email', this.value)">
             <label for="email">Email adress</label>
         </div>
     </div>
@@ -55,33 +55,33 @@
         <div class="professionalExperience section">
             <p>Proffesional Experience</p>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="professionalExperience" placeholder="Worked as junior developer in microsoft since 2018">
+                <input type="text" class="form-control" id="professionalExperience" placeholder="Worked as junior developer in microsoft since 2018" oninput="updateCV('ProfessionalExperience', this.value)">
                 <label for="professionalExperience">Profesional Experience</label>
             </div>
         </div>
         <div class="education section">
             <p>Education</p>
             <div class="form-floating">
-                <input type="text" class="form-control" id="education" placeholder="Studied in NY, Bachelor of Science in Computer Science">
+                <input type="text" class="form-control" id="education" placeholder="Studied in NY, Bachelor of Science in Computer Science" oninput="updateCV('Education', this.value)">
                 <label for="education">Education</label>
             </div>
         </div>
         <div class="languages section">
             <p>Languages</p>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="languages" placeholder="English, C1">
+                <input type="text" class="form-control" id="languages" placeholder="English, C1" oninput="updateCV('Language', this.value)">
                 <label for="languages">Languages</label>
             </div>
         </div>
         <div class="training section">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="training" placeholder="Microsoft, April 2021, Demonstrated proficiency in C# programming">
+                <input type="text" class="form-control" id="training" placeholder="Microsoft, April 2021, Demonstrated proficiency in C# programming" oninput="updateCV('Training', this.value)">
                 <label for="training">Training, Courses, Certifications</label>
             </div>
         </div>
         <div class="professionalProfile section">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="professionalProfile" placeholder="Some words about you...">
+                <input type="text" class="form-control" id="professionalProfile" placeholder="Some words about you..." oninput="updateCV('Profile', this.value)">
                 <label for="professionalProfile">Professional Profile</label>
             </div>
         </div>
@@ -92,28 +92,28 @@
         <div class="skills section">
             <p>Skills</p>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="skills" placeholder="C#, ASP.Net, Git and so on!">
+                <input type="text" class="form-control" id="skills" placeholder="C#, ASP.Net, Git and so on!" oninput="updateCV('Skills', this.value)">
                 <label for="skills">Skills</label>
             </div>
         </div>
         <div class="interests section">
             <p>Interests</p>
             <div class="form-floating">
-                <input type="text" class="form-control" id="interests" placeholder="Coding, video games">
+                <input type="text" class="form-control" id="interests" placeholder="Coding, video games" oninput="updateCV('Interests', this.value)">
                 <label for="interests">Interests</label>
             </div>
         </div>
         <div class="links section">
             <p>Links</p>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="links" placeholder="https://www.example.com">
+                <input type="text" class="form-control" id="links" placeholder="https://www.example.com" oninput="updateCV('Links', this.value)">
                 <label for="links">Links</label>
             </div>
         </div>
         <div class="cpdp section">
             <p>Consent for Personal Data Processing</p>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="cpdp" placeholder="Write your Consent for Personal Data Processing here...">
+                <input type="text" class="form-control" id="cpdp" placeholder="Write your Consent for Personal Data Processing here..." oninput="updateCV('Consent', this.value)">
                 <label for="cpdp">Consent for Personal Data Processing</label>
             </div>
         </div>
@@ -124,7 +124,23 @@
 </div>
 
 <div class="cv text-center">
-    <p>CV Generator</p>
+    <h2>Live CV Preview</h2>
+    <img id="cvPhoto" style="max-height: 10rem;"/>
+    <p><span id="cvName"></span> <span id="cvSurname"></span></p>
+    <p id="cvDateOfBirth"></p>
+    <p id="cvCountry"></p>
+    <p id="cvCity"></p>
+    <p id="cvPhone"></p>
+    <p id="cvEmail"></p>
+    <p id="cvProfessionalExperience"></p>
+    <p id="cvEducation"></p>
+    <p id="cvLanguages"></p>
+    <p id="cvTraining"></p>
+    <p id="cvProfile"></p>
+    <p id="cvSkills"></p>
+    <p id="cvInterests"></p>
+    <p id="cvLinks"></p>
+    <p id="cvConsent"></p>
 
 </div>
 
@@ -151,6 +167,30 @@
         if (divId === "section3") {
             divId1.classList.add("dont-display");
             document.getElementById("section2").classList.remove("dont-display");
+        }
+    }
+
+    function updateCV(field, value) {
+        if (field === "Surname" || field === "Name") {
+            document.getElementById('cv' + field).innerText = value;
+        }
+        else {
+            document.getElementById('cv' + field).innerText = field + ": " + value;
+        }
+    }
+
+    function updateCVPhoto(input) {
+        const file = input.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            const cvPhoto = document.getElementById('cvPhoto');
+            cvPhoto.src = e.target.result;
+            cvPhoto.style.display = 'block';
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
         }
     }
 </script>
