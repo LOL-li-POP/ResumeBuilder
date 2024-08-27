@@ -30,9 +30,25 @@ namespace ResumeBuilder.Controllers
                 PdfPage page = document.AddPage();
                 XGraphics gfx = XGraphics.FromPdfPage(page);
                 XFont font = new XFont("Arial", 11, XFontStyleEx.Regular);
-                gfx.DrawString("Hello, World!", font, XBrushes.Black,
-                    new XRect(0, 0, page.Width, page.Height),
-                    XStringFormat.Center);
+                XSolidBrush color = XBrushes.Black;
+                XStringFormat stringFormat = XStringFormats.Center;
+                XRect rect = new XRect(0, 0, page.Width, page.Height);
+                
+                //Drawing content
+                gfx.DrawString(model.Name + " " + model.Surname, font, color, rect, stringFormat);
+                gfx.DrawString(model.DateOfBirth, font, color, rect, stringFormat);
+                gfx.DrawString("From: " + model.City + ", " + model.Country, font, color, rect, stringFormat);
+                gfx.DrawString("Phone number: " + model.Phone, font, color, rect, stringFormat);
+                gfx.DrawString("E-mail: " + model.Email, font, color, rect, stringFormat);
+                gfx.DrawString("Work Experience: " + model.ProfessionalExperience, font, color, rect, stringFormat);
+                gfx.DrawString("Education: " + model.Education, font, color, rect, stringFormat);
+                gfx.DrawString("Languages: " + model.Languages, font, color, rect, stringFormat);
+                gfx.DrawString("Training: " + model.Training, font, color, rect, stringFormat);
+                gfx.DrawString("Work Profile: " + model.Profile, font, color, rect, stringFormat);
+                gfx.DrawString("Interests: " + model.Interests, font, color, rect, stringFormat);
+                gfx.DrawString("Links: " + model.Links, font, color, rect, stringFormat);
+                gfx.DrawString("Consent: " + model.Consent, font, color, rect, stringFormat);
+
                 string filename = "CV.pdf";
                 using (var stream = new MemoryStream())
                 {
