@@ -31,12 +31,19 @@ namespace ResumeBuilder.Tests
             model.Interests = "Coding";
             model.Links = "https://linkedin.com/in/johndoe";
             model.Consent = "Yes";
-
+            
             //ACT
             IActionResult result = controller.GeneratePDF(model);
 
             //ASSERT
             Assert.IsNotType<BadRequest>(result);
+
+            if (result is FileContentResult fileResult)
+            {
+                string outputPath = Path.Combine(Directory.GetCurrentDirectory(), "UnitTestCV.pdf");
+                File.WriteAllBytes(outputPath, fileResult.FileContents);
+
+            }
         }
     }
 }

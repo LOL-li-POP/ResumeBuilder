@@ -5,12 +5,12 @@
 }
 
 <div class="inputs text-center">
-    <form asp-action="GeneratePDF" asp-controller="Home" method="post">
+    <form asp-action="GeneratePDF" asp-controller="Home" method="post" enctype="multipart/form-data">
     <div id="section1">
     <div class="photo section">
         <div class="mb-3">
             <label for="formFile" class="form-label">Choose file:</label>
-                <input class="form-control" type="file" id="formFile" accept="image/*" onchange="updateCVPhoto(this)">
+                <input class="form-control" type="file" id="formFile" accept="image/*" onchange="updateCVPhoto(this)" name="Photo">
         </div>
     </div>
     <div class="bacisPersonalInformation section">

@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices;
 
 namespace ResumeBuilder.Models
 {
     public class CvModel
     {
+        //public IFormFile Photo { get; set; }
         [Required]
         public string Name { get; set; }
         public string Surname { get; set; }
