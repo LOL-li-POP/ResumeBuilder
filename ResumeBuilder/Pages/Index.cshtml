@@ -53,20 +53,43 @@
     <button type="button" class="btn btn-primary" onclick="next('section1')">Next</button>
     </div>
     <div id="section2" class="dont-display">
-        <div class="professionalExperience section">
-            <p>Proffesional Experience</p>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="professionalExperience" name="ProfessionalExperience" placeholder="Worked as junior developer in microsoft since 2018" oninput="updateCV('ProfessionalExperience', this.value)">
-                <label for="professionalExperience">Profesional Experience</label>
+            <div class="professionalExperience section">
+                <button type="button" class="btn btn-primary" onclick="addExperience()">+</button>
+                <p>Experience 1</p>
+                <div class="Experience">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="professionalExperienceTitle1" name="ProfessionalExperience[0].Title" placeholder="Microsoft" oninput="updateCV('ProfessionalExperience[0].Title', this.value)">
+                        <label for="professionalExperienceTitle1">Title</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="professionalExperienceDate1" name="ProfessionalExperience[0].Date" placeholder="2018" oninput="updateCV('ProfessionalExperience[0].Date', this.value)">
+                        <label for="professionalExperienceDate1">Date</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="professionalExperienceDescription1" name="ProfessionalExperience[0].Description" placeholder="Worked as junior developer in Microsoft since 2018" oninput="updateCV('ProfessionalExperience[0].Description', this.value)">
+                        <label for="professionalExperienceDescription1">Description</label>
+                    </div>
+                </div>
+                
             </div>
-        </div>
-        <div class="education section">
-            <p>Education</p>
-            <div class="form-floating">
-                <input type="text" class="form-control" id="education" name="Education" placeholder="Studied in NY, Bachelor of Science in Computer Science" oninput="updateCV('Education', this.value)">
-                <label for="education">Education</label>
+            <div class="education section">
+                <p>Education 1</p>
+                <div class="Education">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="educationTitle1" name="Education[0].Title" placeholder="Degree" oninput="updateCV('Education[0].Title', this.value)">
+                        <label for="educationTitle1">Title</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="educationDate1" name="Education[0].Date" placeholder="Year" oninput="updateCV('Education[0].Date', this.value)">
+                        <label for="educationDate1">Date</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="educationDescription1" name="Education[0].Description" placeholder="Details" oninput="updateCV('Education[0].Description', this.value)">
+                        <label for="educationDescription1">Description</label>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="addEducation()">+</button>
             </div>
-        </div>
         <div class="languages section">
             <p>Languages</p>
             <div class="form-floating mb-3">
@@ -91,11 +114,15 @@
     </div>
     <div id="section3" class="dont-display">
         <div class="skills section">
-            <p>Skills</p>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="skills" placeholder="C#, ASP.Net, Git and so on!" name="Skills" oninput="updateCV('Skills', this.value)">
-                <label for="skills">Skills</label>
-            </div>
+                <p>Skills</p>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="development" placeholder="C#, ASP.Net, Git and so on!" name="Development" oninput="updateCV('Development', this.value)">
+                    <label for="Development">Development</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="other" placeholder="C#, ASP.Net, Git and so on!" name="Other" oninput="updateCV('Other', this.value)">
+                    <label for="other">Other</label>
+                </div>
         </div>
         <div class="interests section">
             <p>Interests</p>
@@ -147,6 +174,114 @@
 </div>
 
 <script>
+    let experienceCount = 1;
+    let educationCount = 1;
+
+    function addExperience() {
+        experienceCount++;
+
+        // Wyszukaj główny <div> doświadczenia
+        const originalExperienceDiv = document.querySelector('.Experience');
+
+        // Utwórz nowy <div> i skopiuj zawartość oryginalnego <div>
+        const newExperienceDiv = originalExperienceDiv.cloneNode(true);
+
+        // Zaktualizuj identyfikatory i nazwy pól w nowym <div>
+        const inputs = newExperienceDiv.querySelectorAll('input');
+        inputs.forEach((input) => {
+            // Utwórz nowy id i name
+            const newId = `${input.id}${experienceCount}`;
+            input.id = newId;
+
+            // Zaktualizuj atrybut name
+            const fieldName = input.name.split('.')[1];
+            input.name = `ProfessionalExperience[${experienceCount - 1}].${fieldName}`;
+
+            // Ustaw nową funkcję oninput
+            input.oninput = function () {
+                updateCV(`ProfessionalExperience[${experienceCount - 1}].${fieldName}`, this.value);
+            };
+
+            // Zaktualizuj etykiety
+            const label = newExperienceDiv.querySelector(`label[for="${newId}"]`);
+            if (label) {
+                label.setAttribute('for', newId);
+            }
+        });
+
+        // Utwórz i dodaj nowy paragraf z numerem doświadczenia
+        const experienceParagraph = document.createElement('p');
+        experienceParagraph.innerText = `Experience ${experienceCount}`;
+
+        // Znajdź istniejący paragraf i usuń go (jeśli jest)
+        const existingParagraph = newExperienceDiv.querySelector('p');
+        if (existingParagraph) {
+            existingParagraph.remove();
+        }
+
+        // Dodaj nowy paragraf przed <div class="Experience">
+        const container = document.querySelector('.professionalExperience');
+        container.appendChild(experienceParagraph);
+
+        // Dodaj nowy zestaw doświadczenia do kontenera
+        container.appendChild(newExperienceDiv);
+    }
+
+    function addEducation() {
+        educationCount++;
+
+        // Wyszukaj główny <div> edukacji
+        const originalEducationDiv = document.querySelector('.Education');
+
+        // Utwórz nowy <div> i skopiuj zawartość oryginalnego <div>
+        const newEducationDiv = originalEducationDiv.cloneNode(true);
+
+        // Zaktualizuj identyfikatory i nazwy pól w nowym <div>
+        const inputs = newEducationDiv.querySelectorAll('input');
+        inputs.forEach((input) => {
+            // Utwórz nowy id i name
+            const newId = `${input.id}${educationCount}`;
+            input.id = newId;
+
+            // Zaktualizuj atrybut name
+            const fieldName = input.name.split('.')[1];
+            input.name = `Education[${educationCount - 1}].${fieldName}`;
+
+            // Ustaw nową funkcję oninput
+            input.oninput = function () {
+                updateCV(`Education[${educationCount - 1}].${fieldName}`, this.value);
+            };
+
+            // Zaktualizuj etykiety
+            const label = newEducationDiv.querySelector(`label[for="${newId}"]`);
+            if (label) {
+                label.setAttribute('for', newId);
+            }
+        });
+
+        // Utwórz i dodaj nowy paragraf z numerem edukacji
+        const educationParagraph = document.createElement('p');
+        educationParagraph.innerText = `Education ${educationCount}`;
+
+        // Znajdź istniejący paragraf i usuń go (jeśli jest)
+        const existingParagraph = newEducationDiv.querySelector('p');
+        if (existingParagraph) {
+            existingParagraph.remove();
+        }
+
+        // Dodaj nowy paragraf przed <div class="Education">
+        const container = document.querySelector('.education');
+        container.appendChild(educationParagraph);
+        container.appendChild(newEducationDiv);
+
+        // Znajdź przycisk i przenieś go na koniec kontenera
+        const addButton = container.querySelector('.btn-primary');
+        if (addButton) {
+            container.appendChild(addButton);
+        }
+    }
+
+
     function next(divId) 
     {
         const divId1 = document.getElementById(divId);

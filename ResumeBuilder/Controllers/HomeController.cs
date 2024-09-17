@@ -30,13 +30,13 @@ namespace ResumeBuilder.Controllers
                 //if code isn't understandable visit https://www.pdfsharp.net/wiki/PDFsharpFirstSteps.ashx
                 PdfDocument document = new PdfDocument();
                 PdfPage page = document.AddPage();
-                XGraphics gfx = XGraphics.FromPdfPage(page);
                 XFont font = new XFont("Arial", 14, XFontStyleEx.Regular);
+                XGraphics gfx = XGraphics.FromPdfPage(page);
                 XSolidBrush color = XBrushes.Black;
                 XStringFormat stringFormat = XStringFormats.Center;
 
                 //Drawing content
-                double y = 160;
+                double y = 141.3;
                 double lineHeight = 23.1;
 
                 /*using (var ms = new MemoryStream())
@@ -50,24 +50,57 @@ namespace ResumeBuilder.Controllers
            
                     gfx.DrawImage(photo, new XRect(20, 20, 140*x, 140));
                 }*/
-                void DrawText(string text)
+                void Enter()
                 {
-                    gfx.DrawString(text, font, color, new XRect(20, y, page.Width - 40, lineHeight), XStringFormats.Center);
                     y += lineHeight;
                 }
-                gfx.DrawString(model.Name + " " + model.Surname, new XFont("Arial", 20, XFontStyleEx.Regular), color, new XRect(20, 20, page.Width - 40, lineHeight), XStringFormats.Center);
-                DrawText("Date of Birth: " + model.DateOfBirth);
-                DrawText("From: " + model.City + ", " + model.Country);
-                DrawText("Phone number: " + model.Phone);
-                DrawText("E-mail: " + model.Email);
-                DrawText("Work Experience: " + model.ProfessionalExperience);
-                DrawText("Education: " + model.Education);
-                DrawText("Languages: " + model.Languages);
-                DrawText("Training: " + model.Training);
-                DrawText("Work Profile: " + model.Profile);
-                DrawText("Interests: " + model.Interests);
-                DrawText("Links: " + model.Links);
-                DrawText("Consent: " + model.Consent);
+                void DrawText(string text, double size = 14, XFontStyleEx style = XFontStyleEx.Regular)
+                {
+                    XFont font = new XFont("Arial", size, style);
+                    gfx.DrawString(text, font, color, new XRect(72, y, page.Width - 40, lineHeight), XStringFormats.CenterLeft);
+                    Enter();
+                };
+                void DrawTextXY(string text, double rectx, double recty)
+                {
+                    XFont font = new XFont("Arial", 14, XFontStyleEx.Regular);
+                    gfx.DrawString(text, font, color, new XRect(rectx, recty, page.Width - 40, lineHeight), XStringFormats.CenterLeft);
+                }
+                gfx.DrawString(model.Name + " " + model.Surname, new XFont("Arial", 23, XFontStyleEx.Bold), color, new XRect(20, 72, page.Width - 40, lineHeight), XStringFormats.Center);
+                gfx.DrawString(model.City + ", " + model.Country + " | " + model.Phone + " | " + model.Email, font, color, new XRect(20, 95.1, page.Width - 40, lineHeight), XStringFormats.Center);
+                gfx.DrawString(model.Links, font, color, new XRect(20, 118.2, page.Width - 40, lineHeight), XStringFormats.Center);
+                Enter();
+                gfx.DrawLine(new XPen(XColors.Black), 72, y, 523, y);
+                Enter();
+                DrawText("Skills ", 19, XFontStyleEx.Bold);
+                DrawText("Development ", 14, XFontStyleEx.Bold);
+                DrawTextXY(model.Development, 200, y-lineHeight);
+                DrawText("Other ", 14, XFontStyleEx.Bold);
+                DrawTextXY(model.Other, 200, y - lineHeight);
+                DrawText("Languages ", 14, XFontStyleEx.Bold);
+                DrawTextXY(model.Languages, 200, y - lineHeight);
+                Enter();
+                gfx.DrawLine(new XPen(XColors.Black), 72, y, 523, y);
+                Enter();
+                DrawText("Experience ", 19, XFontStyleEx.Bold);
+                foreach (var experience in model.ProfessionalExperience)
+                {
+                    DrawText(experience.Title, 14, XFontStyleEx.Bold);
+                    gfx.DrawString(experience.Date, new XFont("Arial", 14, XFontStyleEx.Bold), color, new XRect(0, y-lineHeight, 523, lineHeight), XStringFormats.CenterRight);
+                    DrawText(experience.Description);
+                    Enter();
+                }
+                Enter();
+                gfx.DrawLine(new XPen(XColors.Black), 72, y, 523, y);
+                Enter();
+                DrawText("Education ", 19, XFontStyleEx.Bold);
+                foreach (var education in model.Education)
+                {
+                    DrawText(education.Title, 14, XFontStyleEx.Bold);
+                    gfx.DrawString(education.Date, new XFont("Arial", 14, XFontStyleEx.Bold), color, new XRect(0, y - lineHeight, 523, lineHeight), XStringFormats.CenterRight);
+                    DrawText(education.Description);
+                    Enter();
+                }
+                gfx.DrawString(model.Consent, new XFont("Arial", 14, XFontStyleEx.Regular), XBrushes.DimGray, new XRect(72, y, 523, lineHeight), XStringFormats.CenterLeft);
 
                 string filename = "CV.pdf";
                 using (var stream = new MemoryStream())
