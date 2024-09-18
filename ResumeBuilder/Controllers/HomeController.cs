@@ -3,6 +3,7 @@ using PdfSharp.Drawing;
 using PdfSharp.Drawing.Layout;
 using PdfSharp.Pdf;
 using ResumeBuilder.Models;
+using ResumeBuilder.Utilities;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.Intrinsics.Arm;
@@ -85,10 +86,13 @@ namespace ResumeBuilder.Controllers
                 foreach (var experience in model.ProfessionalExperience)
                 {
                     DrawText(experience.Title, 14, XFontStyleEx.Bold);
-                    gfx.DrawString(experience.Date, new XFont("Arial", 14, XFontStyleEx.Bold), color, new XRect(0, y-lineHeight, 523, lineHeight), XStringFormats.CenterRight);
-                    DrawText(experience.Description);
+                    gfx.DrawString(experience.Date, new XFont("Arial", 14, XFontStyleEx.Bold), color, new XRect(0, y - lineHeight, 523, lineHeight), XStringFormats.CenterRight);
+
+                    y += lineHeight/1.4;
+                    y = PdfMultiLineUtility.DrawMultilineText(gfx, experience.Description, font, color, new XPoint(72, y), lineHeight);
                     Enter();
                 }
+
                 Enter();
                 gfx.DrawLine(new XPen(XColors.Black), 72, y, 523, y);
                 Enter();
@@ -97,10 +101,13 @@ namespace ResumeBuilder.Controllers
                 {
                     DrawText(education.Title, 14, XFontStyleEx.Bold);
                     gfx.DrawString(education.Date, new XFont("Arial", 14, XFontStyleEx.Bold), color, new XRect(0, y - lineHeight, 523, lineHeight), XStringFormats.CenterRight);
-                    DrawText(education.Description);
+
+                    y += lineHeight / 1.4;
+                    y = PdfMultiLineUtility.DrawMultilineText(gfx, education.Description, font, color, new XPoint(72, y), lineHeight);
                     Enter();
                 }
-                gfx.DrawString(model.Consent, new XFont("Arial", 14, XFontStyleEx.Regular), XBrushes.DimGray, new XRect(72, y, 523, lineHeight), XStringFormats.CenterLeft);
+                var consentTextHeight = PdfWrapTextUtility.CalculateTextHeight(gfx, model.Consent, font, 523);
+                PdfWrapTextUtility.DrawWrappedText(gfx, model.Consent, new XFont("Arial", 9, XFontStyleEx.Regular), XBrushes.DimGray, new XRect(72, y, 451, consentTextHeight), XStringFormats.TopLeft);
 
                 string filename = "CV.pdf";
                 using (var stream = new MemoryStream())
