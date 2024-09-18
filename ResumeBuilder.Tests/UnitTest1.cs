@@ -22,12 +22,9 @@ namespace ResumeBuilder.Tests
             model.City = "Warsaw";
             model.Phone = "123-456-789";
             model.Email = "john.doe@example.com";
-            model.ProfessionalExperience = "Worked as developer";
-            model.Education = "BSc in Computer Science";
             model.Languages = "English, C1";
             model.Training = "None";
             model.Profile = "Developer";
-            model.Skills = "C#, ASP.NET";
             model.Interests = "Coding";
             model.Links = "https://linkedin.com/in/johndoe";
             model.Consent = "Yes";
