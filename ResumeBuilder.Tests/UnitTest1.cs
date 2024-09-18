@@ -13,22 +13,32 @@ namespace ResumeBuilder.Tests
         public void Generate_PDF()
         {
             //ARRANGE
-            CvModel model = new CvModel();
             HomeController controller = new HomeController();
-            model.Name = "John";
-            model.Surname = "Doe";
-            model.DateOfBirth = "01-01-2000";
-            model.Country = "Poland";
-            model.City = "Warsaw";
-            model.Phone = "123-456-789";
-            model.Email = "john.doe@example.com";
-            model.Languages = "English, C1";
-            model.Training = "None";
-            model.Profile = "Developer";
-            model.Interests = "Coding";
-            model.Links = "https://linkedin.com/in/johndoe";
-            model.Consent = "Yes";
-            
+            CvModel model = new CvModel
+            {
+                Name = "John",
+                Surname = "Doe",
+                DateOfBirth = "01-01-2000",
+                Country = "Poland",
+                City = "Warsaw",
+                Phone = "123-456-789",
+                Email = "john.doe@example.com",
+                ProfessionalExperience = new List<ProfessionalExperience>
+                {
+                    new ProfessionalExperience { Title = "Developer", Date = "2021-2023", Description = "Worked as developer" }
+                },
+                Education = new List<Education>
+                {
+                    new Education { Title = "BSc in Computer Science", Date = "2017-2021", Description = "Graduated with honors" }
+                },
+                Languages = "English, C1",
+                Development = "C#, ASP.NET",
+                Other = "Git",
+                Interests = "Coding",
+                Links = "https://linkedin.com/in/johndoe",
+                Consent = "Yes"
+            };
+
             //ACT
             IActionResult result = controller.GeneratePDF(model);
 
