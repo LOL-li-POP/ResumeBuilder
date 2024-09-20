@@ -17,13 +17,13 @@ jobs:
           dotnet-version: '8.x'
       - name: Build with dotnet
         run: dotnet build --configuration Release
-      - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+      - name: Publish with dotnet
+        run: dotnet publish -c Release -o ${{ github.workspace }}/myapp
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ${{ github.workspace }}/myapp
   deploy:
     runs-on: windows-latest
     needs: build
@@ -31,7 +31,7 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
+      id-token: write # This is required for requesting the JWT
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
@@ -50,5 +50,4 @@ jobs:
         with:
           app-name: 'ResumeBuilder'
           slot-name: 'Production'
-          package: .
-          
+          package: ${{ github.workspace }}/myapp
