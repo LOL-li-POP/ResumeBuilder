@@ -1,14 +1,17 @@
 name: Utwórz i wdróż aplikację .NET Core w aplikacji internetowej ResumeBuilder
+
 on:
   push:
     branches:
     - development
+
 env:
   AZURE_WEBAPP_NAME: ResumeBuilder
   AZURE_WEBAPP_PACKAGE_PATH: ResumeBuilder\published
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 8.0.x
   WORKING_DIRECTORY: ResumeBuilder
+
 jobs:
   build:
     runs-on: windows-latest
@@ -26,11 +29,17 @@ jobs:
       run: dotnet test "${{ env.WORKING_DIRECTORY }}" --no-build
     - name: Publish
       run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
+    
+    # Dodany krok, który wylistuje pliki po publikacji
+    - name: List published files
+      run: dir "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
+
     - name: Publish Artifacts
       uses: actions/upload-artifact@v3
       with:
         name: webapp
         path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
   deploy:
     runs-on: windows-latest
     needs: build
@@ -41,7 +50,7 @@ jobs:
         name: webapp
         path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
     - name: Deploy to Azure WebApp
-      uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v3
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.ResumeBuilder_31D6 }}
