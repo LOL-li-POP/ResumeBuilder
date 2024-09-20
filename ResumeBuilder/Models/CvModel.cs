@@ -7,22 +7,22 @@ namespace ResumeBuilder.Models
     {
         //public IFormFile Photo { get; set; }
         [Required]
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string DateOfBirth { get; set; }
-        public string Country { get; set; }
-        public string City { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Surname { get; set; } = string.Empty;
+        public string DateOfBirth { get; set; } = string.Empty;
+        public string Country { get; set; } = string.Empty;
+        public string City { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
         public List<ProfessionalExperience> ProfessionalExperience { get; set; } = new List<ProfessionalExperience>();
         public List<Education> Education { get; set; } = new List<Education>();
-        public string Languages { get; set; }
-        public string Training { get; set; }
-        public string Profile { get; set; }
-        public string Development { get; set; }
-        public string Other { get; set; }
-        public string Interests { get; set; }
-        public string Links { get; set; }
-        public string Consent { get; set; }
+        public string Languages { get; set; } = string.Empty;
+        public string Training { get; set; } = string.Empty;
+        public string Profile { get; set; } = string.Empty;
+        public string Development { get; set; } = string.Empty;
+        public string Other { get; set; } = string.Empty;
+        public string Interests { get; set; } = string.Empty;
+        public string Links { get; set; } = string.Empty;
+        public string Consent { get; set; } = string.Empty;
     }
 }
