@@ -53,4 +53,4 @@ jobs:
           app-name: 'ResumeBuilder'
           slot-name: 'Production'
           package: ${{ github.workspace }}/myapp
-
+- task: PublishBuildArtifacts@1
