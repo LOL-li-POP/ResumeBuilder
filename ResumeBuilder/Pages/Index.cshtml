@@ -187,10 +187,10 @@
         const newExperienceDiv = originalExperienceDiv.cloneNode(true);
 
         // Zaktualizuj identyfikatory i nazwy pól w nowym <div>
-        const inputs = newExperienceDiv.querySelectorAll('input');
+        const inputs = newExperienceDiv.querySelectorAll('input, textarea');
         inputs.forEach((input) => {
             // Utwórz nowy id i name
-            const newId = `${input.id}${experienceCount}`;
+            const newId = `${input.id.replace(/\d+$/, '')}${experienceCount}`; // Usunięcie liczby z końca id
             input.id = newId;
 
             // Zaktualizuj atrybut name
@@ -203,7 +203,7 @@
             };
 
             // Zaktualizuj etykiety
-            const label = newExperienceDiv.querySelector(`label[for="${newId}"]`);
+            const label = newExperienceDiv.querySelector(`label[for="${input.id}"]`);
             if (label) {
                 label.setAttribute('for', newId);
             }
@@ -237,10 +237,10 @@
         const newEducationDiv = originalEducationDiv.cloneNode(true);
 
         // Zaktualizuj identyfikatory i nazwy pól w nowym <div>
-        const inputs = newEducationDiv.querySelectorAll('input');
+        const inputs = newEducationDiv.querySelectorAll('input, textarea');
         inputs.forEach((input) => {
             // Utwórz nowy id i name
-            const newId = `${input.id}${educationCount}`;
+            const newId = `${input.id.replace(/\d+$/, '')}${educationCount}`; // Usunięcie liczby z końca id
             input.id = newId;
 
             // Zaktualizuj atrybut name
@@ -253,7 +253,7 @@
             };
 
             // Zaktualizuj etykiety
-            const label = newEducationDiv.querySelector(`label[for="${newId}"]`);
+            const label = newEducationDiv.querySelector(`label[for="${input.id}"]`);
             if (label) {
                 label.setAttribute('for', newId);
             }
@@ -275,11 +275,12 @@
         container.appendChild(newEducationDiv);
 
         // Znajdź przycisk i przenieś go na koniec kontenera
-        const addButton = container.querySelector('.btn-primary');
+        const addButton = document.querySelector('.btn-primary');
         if (addButton) {
             container.appendChild(addButton);
         }
     }
+
 
 
     function next(divId) 

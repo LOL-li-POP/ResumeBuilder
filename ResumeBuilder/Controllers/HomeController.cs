@@ -31,14 +31,14 @@ namespace ResumeBuilder.Controllers
                 //if code isn't understandable visit https://www.pdfsharp.net/wiki/PDFsharpFirstSteps.ashx
                 PdfDocument document = new PdfDocument();
                 PdfPage page = document.AddPage();
-                XFont font = new XFont("Arial", 14, XFontStyleEx.Regular);
+                XFont font = new XFont("Arial", 10, XFontStyleEx.Regular);
                 XGraphics gfx = XGraphics.FromPdfPage(page);
                 XSolidBrush color = XBrushes.Black;
                 XStringFormat stringFormat = XStringFormats.Center;
 
                 //Drawing content
                 double y = 141.3;
-                double lineHeight = 23.1;
+                double lineHeight = 10*1.5;
 
                 /*using (var ms = new MemoryStream())
                 {
@@ -55,7 +55,7 @@ namespace ResumeBuilder.Controllers
                 {
                     y += lineHeight;
                 }
-                void DrawText(string text, double size = 14, XFontStyleEx style = XFontStyleEx.Regular)
+                void DrawText(string text, double size = 10, XFontStyleEx style = XFontStyleEx.Regular)
                 {
                     XFont font = new XFont("Arial", size, style);
                     gfx.DrawString(text, font, color, new XRect(72, y, page.Width - 40, lineHeight), XStringFormats.CenterLeft);
@@ -63,7 +63,7 @@ namespace ResumeBuilder.Controllers
                 };
                 void DrawTextXY(string text, double rectx, double recty)
                 {
-                    XFont font = new XFont("Arial", 14, XFontStyleEx.Regular);
+                    XFont font = new XFont("Arial", 10, XFontStyleEx.Regular);
                     gfx.DrawString(text, font, color, new XRect(rectx, recty, page.Width - 40, lineHeight), XStringFormats.CenterLeft);
                 }
                 gfx.DrawString(model.Name + " " + model.Surname, new XFont("Arial", 23, XFontStyleEx.Bold), color, new XRect(20, 72, page.Width - 40, lineHeight), XStringFormats.Center);
@@ -72,21 +72,21 @@ namespace ResumeBuilder.Controllers
                 Enter();
                 gfx.DrawLine(new XPen(XColors.Black), 72, y, 523, y);
                 Enter();
-                DrawText("Skills ", 19, XFontStyleEx.Bold);
-                DrawText("Development ", 14, XFontStyleEx.Bold);
+                DrawText("Skills ", 14, XFontStyleEx.Bold);
+                DrawText("Development ", 10, XFontStyleEx.Bold);
                 DrawTextXY(model.Development, 200, y-lineHeight);
-                DrawText("Other ", 14, XFontStyleEx.Bold);
+                DrawText("Other ", 10, XFontStyleEx.Bold);
                 DrawTextXY(model.Other, 200, y - lineHeight);
-                DrawText("Languages ", 14, XFontStyleEx.Bold);
+                DrawText("Languages ", 10, XFontStyleEx.Bold);
                 DrawTextXY(model.Languages, 200, y - lineHeight);
                 Enter();
                 gfx.DrawLine(new XPen(XColors.Black), 72, y, 523, y);
                 Enter();
-                DrawText("Experience ", 19, XFontStyleEx.Bold);
+                DrawText("Experience ", 14, XFontStyleEx.Bold);
                 foreach (var experience in model.ProfessionalExperience)
                 {
-                    DrawText(experience.Title, 14, XFontStyleEx.Bold);
-                    gfx.DrawString(experience.Date, new XFont("Arial", 14, XFontStyleEx.Bold), color, new XRect(0, y - lineHeight, 523, lineHeight), XStringFormats.CenterRight);
+                    DrawText(experience.Title, 10, XFontStyleEx.Bold);
+                    gfx.DrawString(experience.Date, new XFont("Arial", 10, XFontStyleEx.Bold), color, new XRect(0, y - lineHeight, 523, lineHeight), XStringFormats.CenterRight);
 
                     y += lineHeight/1.4;
                     y = PdfMultiLineUtility.DrawMultilineText(gfx, experience.Description, font, color, new XPoint(72, y), lineHeight);
@@ -96,11 +96,11 @@ namespace ResumeBuilder.Controllers
                 Enter();
                 gfx.DrawLine(new XPen(XColors.Black), 72, y, 523, y);
                 Enter();
-                DrawText("Education ", 19, XFontStyleEx.Bold);
+                DrawText("Education ", 14, XFontStyleEx.Bold);
                 foreach (var education in model.Education)
                 {
-                    DrawText(education.Title, 14, XFontStyleEx.Bold);
-                    gfx.DrawString(education.Date, new XFont("Arial", 14, XFontStyleEx.Bold), color, new XRect(0, y - lineHeight, 523, lineHeight), XStringFormats.CenterRight);
+                    DrawText(education.Title, 10, XFontStyleEx.Bold);
+                    gfx.DrawString(education.Date, new XFont("Arial", 10, XFontStyleEx.Bold), color, new XRect(0, y - lineHeight, 523, lineHeight), XStringFormats.CenterRight);
 
                     y += lineHeight / 1.4;
                     y = PdfMultiLineUtility.DrawMultilineText(gfx, education.Description, font, color, new XPoint(72, y), lineHeight);
