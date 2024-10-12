@@ -22,8 +22,8 @@ body {
 }
 
 .btn-primary {
-    background-color: #17A2B8;
-    border-color: #17A2B8;
+    background-color: #E67E22;
+    border-color: #E67E22;
 }
 
 .cv {
@@ -36,12 +36,31 @@ body {
     float: left;
     width: 20%;
     border: 1px black solid;
+    background-color: #2980B9;
+    color: #FFF;
 }
 
-.section {
-    border: 2px red dotted;
+.section > .form-floating > label {
+    color: #34495E;
+}
+
+.section > .form-floating > input {
+    background-color: #ECF0F1;
+}
+
+.cvInputForms {
+    padding: 5%;
 }
 
 .dont-display {
     display: none;
+}
+
+.title {
+    height: 500%;
+    background-color: #2C3E50;
+    color: #FFFFFF;
+}
+.cv > h2 {
+    color: #34495E;
 }

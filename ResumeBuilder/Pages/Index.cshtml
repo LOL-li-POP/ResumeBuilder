@@ -5,7 +5,7 @@
 }
 
 <div class="inputs text-center">
-    <form asp-action="GeneratePDF" asp-controller="Home" method="post" enctype="multipart/form-data">
+    <form asp-action="GeneratePDF" asp-controller="Home" method="post" class="cvInputForms" enctype="multipart/form-data">
     <div id="section1">
     <div class="photo section">
         <div class="mb-3">
@@ -19,7 +19,7 @@
                 <input type="text" class="form-control" id="Name" placeholder="John" name="Name" oninput="updateCV('Name', this.value)">
             <label for="Name">Name</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="Surname" placeholder="Smith" name="Surname" oninput="updateCV('Surname', this.value)">
             <label for="Surname">Surname</label>
         </div>
